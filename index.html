@@ -8,9 +8,71 @@
 
     <script src="./js/dom.js"></script>
 
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .input-container {
+            padding: 10px;
+            width: 80%;
+            margin-right: 10px;
+        }
+
+        .input-container button {
+            padding: 10px;
+            margin-left: 20px;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
 </head>
 
 <body>
+
+    <!--CRUD İslemleri : Create, Read, Update, Delete-->
+    <h1>Todo Uygulaması</h1>
+
+    <div class="input-container">
+
+        <input type="text" id="todo-input" placeholder="Yapılacak Ekle">
+
+        <button onclick="addTodo()">Ekle</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Görev</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+
+            <tbody id="todoTableBody">
+
+            </tbody>
+        </table>
+
+    </div>
 
 
 </body>
