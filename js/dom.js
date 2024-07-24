@@ -20,7 +20,7 @@ button.addEventListener("mouseleave", () => {
 
 console.log(button); */
 
-let todos = [];
+/* let todos = [];
 
 
 function addTodo() {
@@ -43,15 +43,7 @@ function addTodo() {
     todoInput.value = "";
 }
 
-function toggleTodoComplition(id) {
-    const todo = todos.find(todo => todo.id === id);
 
-    if (todo) {
-        todo.completed = !todo.completed
-        renderTodos();
-    }
-
-}
 
 
 
@@ -103,3 +95,22 @@ function deleteTodo(id) {
     todos = todos.filter((todo) => todo.id !== id);
     renderTodos();
 }
+function toggleTodoComplition(id) {
+    const todo = todos.find(todo => todo.id === id);
+
+    if (todo) {
+        todo.completed = !todo.completed
+        renderTodos();
+    }
+
+} */
+
+const boxes = document.querySelectorAll(".box")
+
+const kullanici = document.querySelector('.kullanici')
+const image = document.querySelector('img')
+image.onclick = () => {
+
+    image.setAttribute('src', "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSAOnLXSaPbc4K0IId0dSTI050OfwusYAyfQzMiCF6mrwNPVdmN")
+}
+
