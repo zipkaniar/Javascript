@@ -23,6 +23,14 @@ class Car {
     park() {
         const carContainer = document.getElementById("car-container");
         carContainer.style.left = "0";
+
+        // Arka plan rengini açık pembe yap
+        carContainer.style.backgroundColor = "lightpink";
+        
+        // 3 saniye sonra eski rengine döndür
+        setTimeout(() => {
+            carContainer.style.backgroundColor = "#fff";
+        }, 3000);
     }
 
     displayInfo() {
@@ -44,26 +52,12 @@ class ElectricCar extends Car {
     }
 
     charge() {
-        if (this.chargeInterval) return; // Zaten şarj ediliyorsa çık
-
-        this.chargeInterval = setInterval(() => {
-            if (this.batteryLife < 100) {
-                this.batteryLife = Math.min(this.batteryLife + 5, 100); // Şarj yüzdesini %100'ü geçmeyecek şekilde güncelle
-                this.updateBatteryInfo();
-                this.displayStatusMessage(`${this.model} model ${this.brand} markalı araç ${this.batteryLife}% kapasitesine sahip.`);
-            } else {
-                clearInterval(this.chargeInterval);
-                this.chargeInterval = null;
-                this.displayStatusMessage("Batarya tamamen dolu.");
-            }
-        }, 2000);
-    }
-
-    stopCharging() {
-        if (this.chargeInterval) {
-            clearInterval(this.chargeInterval);
-            this.chargeInterval = null;
-            this.displayStatusMessage("Şarj işlemi durduruldu.");
+        if (this.batteryLife < 100) {
+            this.batteryLife = Math.min(this.batteryLife + 5, 100);
+            this.updateBatteryInfo();
+            this.displayStatusMessage(`${this.model} model ${this.brand} markalı araç ${this.batteryLife}% kapasitesine sahip.`);
+        } else {
+            this.displayStatusMessage("Batarya zaten tam şarjlı.");
         }
     }
 
@@ -75,7 +69,7 @@ class ElectricCar extends Car {
     start() {
         if (this.batteryLife > 0) {
             super.start();
-            this.batteryLife = Math.max(this.batteryLife - 20, 0); // Şarj yüzdesini sıfırın altına düşürmeyin
+            this.batteryLife = Math.max(this.batteryLife - 20, 0);
             this.updateBatteryInfo();
             this.displayStatusMessage(`${this.model} model ${this.brand} markalı araç çalışıyor.`);
         } else {
@@ -87,7 +81,15 @@ class ElectricCar extends Car {
         if (this.batteryLife > 0) {
             super.stop();
         } else {
-            this.displayStatusMessage("Batarya %0, aracı park edemezsiniz. Lütfen şarj edin.");
+            this.displayStatusMessage("Şarjınız bitmiş durumda, park etme işlemi yapılamaz.");
+        }
+    }
+
+    stopCharging() {
+        if (this.chargeInterval) {
+            clearInterval(this.chargeInterval);
+            this.chargeInterval = null;
+            this.displayStatusMessage("Şarj işlemi durduruldu.");
         }
     }
 }
@@ -100,11 +102,19 @@ document.getElementById("startButton").addEventListener("click", () => {
 });
 
 document.getElementById("parkButton").addEventListener("click", () => {
-    electricCar.stop();
+    electricCar.stop(); // Şarj oranı %0 ise park etmeyi engeller
 });
 
 document.getElementById("chargeButton").addEventListener("click", () => {
-    electricCar.charge();
+    electricCar.stopCharging(); // Önce varsa mevcut şarj işlemini durdur
+    electricCar.chargeInterval = setInterval(() => {
+        if (electricCar.batteryLife < 100) {
+            electricCar.charge();
+        } else {
+            clearInterval(electricCar.chargeInterval);
+            electricCar.chargeInterval = null;
+        }
+    }, 2000);
 });
 
 document.getElementById("stopChargingButton").addEventListener("click", () => {
