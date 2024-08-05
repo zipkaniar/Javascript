@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Araba Galerisi</title>
+
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #car-container {
+            position: absolute;
+            top: 40%;
+            left: 0;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            transition: left 1s;
+        }
+
+        #car {
+            font-size: 50px;
+        }
+
+        #car-info {
+            margin-left: 10px;
+            font-size: 18px;
+        }
+
+        #controls {
+            position: absolute;
+            bottom: 20%;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #battery-info {
+            position: absolute;
+            top: 20%;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="car-container">
+        <div id="car">🚗</div>
+        <div id="car-info"></div>
+    </div>
+    <div id="controls">
+        <button id="startButton">Başlat</button>
+        <button id="parkButton">Park Et</button>
+        <button id="chargeButton">Şarj et</button>
+    </div>
+
+
+    <div id="battery-info"></div>
+    <script src="car.js"></script>
+</body>
+
+</html>
