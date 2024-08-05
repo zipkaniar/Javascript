@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Araba Galerisi</title>
-
-
     <style>
         body {
             display: flex;
@@ -49,10 +47,27 @@
             cursor: pointer;
         }
 
-        #battery-info {
+        #battery-info,
+        #fuel-info {
             position: absolute;
             top: 20%;
             font-size: 18px;
+        }
+
+        #status-message {
+            position: absolute;
+            top: 10%;
+            font-size: 18px;
+            color: #ff0000;
+        }
+
+        #gas-station {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            font-size: 18px;
+            background-color: yellow;
+            padding: 10px;
         }
     </style>
 </head>
@@ -65,11 +80,14 @@
     <div id="controls">
         <button id="startButton">Başlat</button>
         <button id="parkButton">Park Et</button>
-        <button id="chargeButton">Şarj et</button>
+        <button id="chargeButton">Şarj Et</button>
+        <button id="stopChargingButton">Şarjı Durdur</button>
+        <br />
+
     </div>
-
-
     <div id="battery-info"></div>
+    <div id="fuel-info"></div>
+    <div id="status-message"></div>
     <script src="car.js"></script>
 </body>
 
