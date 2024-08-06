@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,18 +23,19 @@
             display: flex;
             align-items: center;
             transition: left 1s;
-            padding: 10px;
-            border: 1px solid #000;
-            background-color: #fff;
         }
 
         #car {
             font-size: 50px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #car-info {
-            margin-left: 10px;
             font-size: 18px;
+            margin-top: 10px;
         }
 
         #controls {
@@ -64,11 +64,12 @@
         }
     </style>
 </head>
-
 <body>
     <div id="car-container">
-        <div id="car">🚗</div>
-        <div id="car-info"></div>
+        <div id="car">
+            <div id="car-info"></div>
+            🚗
+        </div>
     </div>
     <div id="controls">
         <button id="startButton">Başlat</button>
@@ -78,7 +79,6 @@
     </div>
     <div id="battery-info"></div>
     <div id="status-message"></div>
-    <script src="car.js"></script>
+    <script src="car.js" defer></script>
 </body>
-
 </html>
